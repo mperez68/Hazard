@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://brl2qq7lb2ttu"]
+
+[ext_resource type="Texture2D" uid="uid://bsnkprtrfwkht" path="res://assets/sprites/loss.png" id="1_4eyfg"]
+
+[node name="Loss" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4eyfg")

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://c7efsp3h6kydd"]
+
+[ext_resource type="PackedScene" uid="uid://db50g643kkubm" path="res://game_objects/dice.tscn" id="1_2l1xh"]
+[ext_resource type="Script" uid="uid://dv4gukfk0lg10" path="res://main_scenes/scripts/board.gd" id="1_tefm1"]
+[ext_resource type="Texture2D" uid="uid://digddtq1rwre3" path="res://assets/sprites/wood_pane_zooml.png" id="2_t6314"]
+[ext_resource type="PackedScene" uid="uid://dcdr76ki1h0lw" path="res://ui/overlay.tscn" id="3_fpesy"]
+[ext_resource type="AudioStream" uid="uid://cg304e7ip26jx" path="res://assets/sfx/nicking.wav" id="5_21i3q"]
+[ext_resource type="AudioStream" uid="uid://d0fw0x6wwyk1b" path="res://assets/sfx/outing.wav" id="6_bu7rb"]
+[ext_resource type="AudioStream" uid="uid://c125y2f3cf4vs" path="res://assets/sfx/chance.wav" id="7_vde1l"]
+[ext_resource type="AudioStream" uid="uid://dhdkdb2oh5vj8" path="res://assets/sfx/lose.wav" id="8_q38sh"]
+
+[node name="Board" type="Node2D"]
+script = ExtResource("1_tefm1")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -999
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_t6314")
+stretch_mode = 1
+
+[node name="Camera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+anchor_mode = 0
+zoom = Vector2(4, 4)
+metadata/_edit_lock_ = true
+
+[node name="Dice" parent="." instance=ExtResource("1_2l1xh")]
+unique_name_in_owner = true
+position = Vector2(130, 81)
+
+[node name="Dice2" parent="." instance=ExtResource("1_2l1xh")]
+unique_name_in_owner = true
+position = Vector2(158, 81)
+
+[node name="Overlay" parent="." instance=ExtResource("3_fpesy")]
+
+[node name="TurnDelayTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="NickingSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_21i3q")
+
+[node name="OutingSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bu7rb")
+
+[node name="ChanceSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vde1l")
+
+[node name="LoseSfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_q38sh")
+
+[connection signal="rolled" from="Dice" to="." method="_on_dice_rolled"]
+[connection signal="rolled" from="Dice2" to="." method="_on_dice_rolled"]
+[connection signal="roll" from="Overlay" to="." method="_on_overlay_roll"]
+[connection signal="update_main" from="Overlay" to="." method="_on_overlay_update_main"]
+[connection signal="timeout" from="TurnDelayTimer" to="." method="_on_turn_delay_timer_timeout"]

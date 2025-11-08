@@ -1,0 +1,176 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcdr76ki1h0lw"]
+
+[ext_resource type="Script" uid="uid://cv5hh27cfm0k4" path="res://ui/scripts/overlay.gd" id="1_fvwlh"]
+[ext_resource type="Theme" uid="uid://dyi3tojv6lkdl" path="res://assets/theme.tres" id="2_1mp40"]
+[ext_resource type="PackedScene" uid="uid://brl2qq7lb2ttu" path="res://ui/loss.tscn" id="3_ps1qe"]
+[ext_resource type="PackedScene" uid="uid://bb74lls5a0rhm" path="res://ui/win.tscn" id="4_552s0"]
+[ext_resource type="AudioStream" uid="uid://0yv2mt4i1xx1" path="res://assets/sfx/click.wav" id="5_552s0"]
+[ext_resource type="AudioStream" uid="uid://dlg40c5qtqrt3" path="res://assets/sfx/roll.wav" id="6_cu3qx"]
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_1mp40"]
+
+[node name="Overlay" type="CanvasLayer"]
+script = ExtResource("1_fvwlh")
+
+[node name="Margins" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_1mp40")
+
+[node name="Control" type="Control" parent="Margins"]
+layout_mode = 2
+
+[node name="HeaderContainer" type="HBoxContainer" parent="Margins/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="WinLossLabel" type="Label" parent="Margins/Control/HeaderContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Text"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InputsContainer" type="VBoxContainer" parent="Margins/Control"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins/Control/InputsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="MainLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Main"
+
+[node name="VSeparator" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 58
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ChanceLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Chance"
+
+[node name="MainSelContainer" type="HBoxContainer" parent="Margins/Control/InputsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 1
+
+[node name="Main5Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1mp40")
+text = "5"
+
+[node name="Main6Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1mp40")
+text = "6"
+
+[node name="Main7Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+button_group = SubResource("ButtonGroup_1mp40")
+text = "7"
+
+[node name="Main8Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1mp40")
+text = "8"
+
+[node name="Main9Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = SubResource("ButtonGroup_1mp40")
+text = "9"
+
+[node name="RollButton" type="Button" parent="Margins/Control/InputsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Roll"
+
+[node name="WinLossContainer" type="HBoxContainer" parent="Margins/Control"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
+
+[node name="WinsContainer" type="VBoxContainer" parent="Margins/Control/WinLossContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+
+[node name="Win" parent="Margins/Control/WinLossContainer/WinsContainer" instance=ExtResource("4_552s0")]
+layout_mode = 2
+
+[node name="Win2" parent="Margins/Control/WinLossContainer/WinsContainer" instance=ExtResource("4_552s0")]
+layout_mode = 2
+
+[node name="Win3" parent="Margins/Control/WinLossContainer/WinsContainer" instance=ExtResource("4_552s0")]
+layout_mode = 2
+
+[node name="LossesContainer" type="VBoxContainer" parent="Margins/Control/WinLossContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+alignment = 2
+
+[node name="Loss" parent="Margins/Control/WinLossContainer/LossesContainer" instance=ExtResource("3_ps1qe")]
+layout_mode = 2
+
+[node name="Loss2" parent="Margins/Control/WinLossContainer/LossesContainer" instance=ExtResource("3_ps1qe")]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="Margins/Control"]
+layout_mode = 1
+offset_right = 8.0
+offset_bottom = 8.0
+text = "EXIT"
+
+[node name="Click" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_552s0")
+
+[node name="Roll" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_cu3qx")
+
+[connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main5Button" to="." method="_on_main_button_pressed" binds= [5]]
+[connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main6Button" to="." method="_on_main_button_pressed" binds= [6]]
+[connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main7Button" to="." method="_on_main_button_pressed" binds= [7]]
+[connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main8Button" to="." method="_on_main_button_pressed" binds= [8]]
+[connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main9Button" to="." method="_on_main_button_pressed" binds= [9]]
+[connection signal="pressed" from="Margins/Control/InputsContainer/RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="Margins/Control/ExitButton" to="." method="_on_exit_button_pressed"]

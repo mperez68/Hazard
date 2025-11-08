@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://db50g643kkubm"]
+
+[ext_resource type="Script" uid="uid://m7ojcncwkww4" path="res://game_objects/scripts/dice.gd" id="1_6l56r"]
+[ext_resource type="Texture2D" uid="uid://bitbwdojxb6qq" path="res://assets/sprites/dice00.png" id="2_6l56r"]
+[ext_resource type="AudioStream" uid="uid://dmcekotgp13a1" path="res://assets/sfx/rolling.wav" id="3_j0pv1"]
+
+[sub_resource type="Animation" id="Animation_j0pv1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_6l56r"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 2), Vector2(0, -2), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_4tath"]
+resource_name = "rolling"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-4, 0), Vector2(0, 4), Vector2(4, 0), Vector2(0, -4), Vector2(-4, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j0pv1"]
+_data = {
+&"RESET": SubResource("Animation_j0pv1"),
+&"idle": SubResource("Animation_6l56r"),
+&"rolling": SubResource("Animation_4tath")
+}
+
+[node name="Dice" type="Node2D"]
+script = ExtResource("1_6l56r")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6l56r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_j0pv1")
+}
+autoplay = "idle"
+
+[node name="RollTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="SubRollTimer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="ShuffleStartTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="Rolling" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_j0pv1")
+volume_db = -29.982
+max_polyphony = 2
+bus = &"Sfx"
+
+[connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="SubRollTimer" to="." method="_on_sub_roll_timer_timeout"]
+[connection signal="timeout" from="ShuffleStartTimer" to="." method="_on_shuffle_start_timer_timeout"]

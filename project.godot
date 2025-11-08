@@ -11,5 +11,18 @@ config_version=5
 [application]
 
 config/name="hazard"
+run/main_scene="uid://c7efsp3h6kydd"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+MusicManager="*res://managers/music_manager.tscn"
+
+[display]
+
+window/size/borderless=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
