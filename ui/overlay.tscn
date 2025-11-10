@@ -196,8 +196,12 @@ vertical_alignment = 1
 
 [node name="WinLossContainer" type="HBoxContainer" parent="Margins/Control"]
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -128.0
+grow_horizontal = 0
 grow_vertical = 2
 
 [node name="WinsContainer" type="VBoxContainer" parent="Margins/Control/WinLossContainer"]
@@ -225,21 +229,14 @@ layout_mode = 2
 [node name="Loss2" parent="Margins/Control/WinLossContainer/LossesContainer" instance=ExtResource("3_ps1qe")]
 layout_mode = 2
 
-[node name="ExitButton" type="Button" parent="Margins/Control"]
-unique_name_in_owner = true
-layout_mode = 1
-offset_right = 8.0
-offset_bottom = 8.0
-text = "EXIT"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Margins/Control"]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -40.0
-offset_bottom = 40.0
+offset_left = -128.0
+offset_bottom = 92.0
 grow_horizontal = 0
 
 [node name="MusicLabel" type="Label" parent="Margins/Control/VBoxContainer"]
@@ -264,6 +261,22 @@ max_value = 1.0
 step = 0.1
 value = 1.0
 
+[node name="HBoxContainer" type="VBoxContainer" parent="Margins/Control"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 0
+offset_right = 106.0
+offset_bottom = 94.0
+
+[node name="ExitButton" type="Button" parent="Margins/Control/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "EXIT"
+
+[node name="HowToPlayButton" type="Button" parent="Margins/Control/HBoxContainer"]
+layout_mode = 2
+text = "HOW TO
+PLAY"
+
 [node name="Click" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_552s0")
@@ -280,6 +293,7 @@ bus = &"Sfx"
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main7Button" to="." method="_on_main_button_pressed" binds= [7]]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main8Button" to="." method="_on_main_button_pressed" binds= [8]]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main9Button" to="." method="_on_main_button_pressed" binds= [9]]
-[connection signal="pressed" from="Margins/Control/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="value_changed" from="Margins/Control/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="Margins/Control/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="Margins/Control/HBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="Margins/Control/HBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]

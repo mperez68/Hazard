@@ -1,5 +1,6 @@
 class_name Overlay extends CanvasLayer
 
+const WIKI_LINK: String = "https://en.wikipedia.org/wiki/Hazard_(game)"
 @onready var SFX_INDEX: int = AudioServer.get_bus_index("Sfx")
 @onready var MUSIC_INDEX: int = AudioServer.get_bus_index("Music")
 const WIN_TEXTURE = preload("res://ui/win.tscn")
@@ -92,3 +93,6 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 
 func _on_music_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_linear(MUSIC_INDEX, value)
+
+func _on_how_to_play_button_pressed() -> void:
+	OS.shell_open(WIKI_LINK)
