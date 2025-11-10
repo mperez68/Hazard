@@ -87,6 +87,9 @@ func _is_rolling() -> bool:
 func _get_outcome() -> int:
 	# Outing if out of bound
 	if result <= LOW_OUTING or result >= HIGH_OUTING:
+		# Exceptions for bonus
+		if main == 7 and result == 11 or ((main == 6 or main == 8) and result == 12):
+			return 1
 		return -1
 	# If not the first roll, the chance is set and that inverts expectations.
 	elif chance > 0:

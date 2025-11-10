@@ -28,17 +28,16 @@ stretch_mode = 1
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
-anchor_mode = 0
 zoom = Vector2(4, 4)
 metadata/_edit_lock_ = true
 
 [node name="Dice" parent="." instance=ExtResource("1_2l1xh")]
 unique_name_in_owner = true
-position = Vector2(130, 81)
+position = Vector2(-12, 0)
 
 [node name="Dice2" parent="." instance=ExtResource("1_2l1xh")]
 unique_name_in_owner = true
-position = Vector2(158, 81)
+position = Vector2(12, 0)
 
 [node name="Overlay" parent="." instance=ExtResource("3_fpesy")]
 
@@ -48,15 +47,19 @@ one_shot = true
 
 [node name="NickingSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_21i3q")
+bus = &"Sfx"
 
 [node name="OutingSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_bu7rb")
+bus = &"Sfx"
 
 [node name="ChanceSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_vde1l")
+bus = &"Sfx"
 
 [node name="LoseSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_q38sh")
+bus = &"Sfx"
 
 [connection signal="rolled" from="Dice" to="." method="_on_dice_rolled"]
 [connection signal="rolled" from="Dice2" to="." method="_on_dice_rolled"]

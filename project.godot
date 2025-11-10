@@ -13,16 +13,15 @@ config_version=5
 config/name="hazard"
 run/main_scene="uid://c7efsp3h6kydd"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
+boot_splash/fullsize=false
+config/icon="uid://butclnb5fpvkm"
 
 [autoload]
 
 MusicManager="*res://managers/music_manager.tscn"
 
-[display]
-
-window/size/borderless=true
-
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true

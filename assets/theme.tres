@@ -1,6 +1,52 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://dyi3tojv6lkdl"]
+[gd_resource type="Theme" load_steps=13 format=3 uid="uid://dyi3tojv6lkdl"]
 
 [ext_resource type="FontFile" uid="uid://cxnxl8qq25p3m" path="res://assets/fonts/pixel.ttf" id="1_5x3i2"]
+[ext_resource type="Texture2D" uid="uid://cuxfxk51smqfb" path="res://assets/sprites/button/dice_disable.png" id="1_e8htd"]
+[ext_resource type="Texture2D" uid="uid://ddojcodffloux" path="res://assets/sprites/button/dice_focus.png" id="2_wms38"]
+[ext_resource type="Texture2D" uid="uid://bdp1ryuydn12a" path="res://assets/sprites/button/dice_hover.png" id="3_bcf2e"]
+[ext_resource type="Texture2D" uid="uid://h57r6xi00owa" path="res://assets/sprites/button/dice_noface.png" id="4_7g2p0"]
+[ext_resource type="Texture2D" uid="uid://bxhej4rxhlnkb" path="res://assets/sprites/button/dice_pressed.png" id="5_357y2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_llqld"]
+texture = ExtResource("1_e8htd")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_uy2me"]
+texture = ExtResource("2_wms38")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_502fs"]
+texture = ExtResource("3_bcf2e")
+texture_margin_left = 24.0
+texture_margin_top = 24.0
+texture_margin_right = 24.0
+texture_margin_bottom = 24.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 64, 64)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ctyr4"]
+texture = ExtResource("4_7g2p0")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yyr7b"]
+texture = ExtResource("5_357y2")
+texture_margin_left = 16.0
+texture_margin_top = 16.0
+texture_margin_right = 16.0
+texture_margin_bottom = 16.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5x3i2"]
 content_margin_left = 8.0
@@ -12,11 +58,19 @@ corner_detail = 16
 default_font = ExtResource("1_5x3i2")
 Button/colors/font_outline_color = Color(0, 0, 0, 1)
 Button/constants/outline_size = 8
+Button/font_sizes/font_size = 16
+Button/styles/disabled = SubResource("StyleBoxTexture_llqld")
+Button/styles/focus = SubResource("StyleBoxTexture_uy2me")
+Button/styles/hover = SubResource("StyleBoxTexture_502fs")
+Button/styles/normal = SubResource("StyleBoxTexture_ctyr4")
+Button/styles/pressed = SubResource("StyleBoxTexture_yyr7b")
+HBoxContainer/constants/separation = 0
 Label/colors/font_outline_color = Color(0, 0, 0, 1)
 Label/constants/outline_size = 8
 MarginContainer/constants/margin_bottom = 32
 MarginContainer/constants/margin_left = 64
 MarginContainer/constants/margin_right = 64
 MarginContainer/constants/margin_top = 32
-VSeparator/constants/separation = 16
+VBoxContainer/constants/separation = 0
+VSeparator/constants/separation = 64
 VSeparator/styles/separator = SubResource("StyleBoxFlat_5x3i2")

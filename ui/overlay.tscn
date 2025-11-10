@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcdr76ki1h0lw"]
+[gd_scene load_steps=10 format=3 uid="uid://dcdr76ki1h0lw"]
 
 [ext_resource type="Script" uid="uid://cv5hh27cfm0k4" path="res://ui/scripts/overlay.gd" id="1_fvwlh"]
 [ext_resource type="Theme" uid="uid://dyi3tojv6lkdl" path="res://assets/theme.tres" id="2_1mp40"]
@@ -6,6 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://bb74lls5a0rhm" path="res://ui/win.tscn" id="4_552s0"]
 [ext_resource type="AudioStream" uid="uid://0yv2mt4i1xx1" path="res://assets/sfx/click.wav" id="5_552s0"]
 [ext_resource type="AudioStream" uid="uid://dlg40c5qtqrt3" path="res://assets/sfx/roll.wav" id="6_cu3qx"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_cu3qx"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_vg6lt"]
+events = [SubResource("InputEventKey_cu3qx")]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_1mp40"]
 
@@ -39,7 +47,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InputsContainer" type="VBoxContainer" parent="Margins/Control"]
-custom_minimum_size = Vector2(0, 200)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -47,38 +54,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Margins/Control/InputsContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="MainLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer"]
+[node name="RollButton" type="Button" parent="Margins/Control/InputsContainer"]
 unique_name_in_owner = true
-self_modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(320, 64)
 layout_mode = 2
-theme_override_font_sizes/font_size = 38
-text = "Main"
-
-[node name="VSeparator" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="ResultLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 58
-text = "7"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="ChanceLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer"]
-unique_name_in_owner = true
-self_modulate = Color(0, 1, 0, 1)
-layout_mode = 2
-theme_override_font_sizes/font_size = 38
-text = "Chance"
+size_flags_horizontal = 4
+focus_mode = 0
+shortcut = SubResource("Shortcut_vg6lt")
+text = "Roll"
 
 [node name="MainSelContainer" type="HBoxContainer" parent="Margins/Control/InputsContainer"]
 unique_name_in_owner = true
@@ -86,41 +71,128 @@ layout_mode = 2
 alignment = 1
 
 [node name="Main5Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1mp40")
 text = "5"
 
 [node name="Main6Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1mp40")
 text = "6"
 
 [node name="Main7Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_pressed = true
 button_group = SubResource("ButtonGroup_1mp40")
 text = "7"
 
 [node name="Main8Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1mp40")
 text = "8"
 
 [node name="Main9Button" type="Button" parent="Margins/Control/InputsContainer/MainSelContainer"]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+focus_mode = 0
 toggle_mode = true
 button_group = SubResource("ButtonGroup_1mp40")
 text = "9"
 
-[node name="RollButton" type="Button" parent="Margins/Control/InputsContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins/Control/InputsContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Margins/Control/InputsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+alignment = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="MainLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Main"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Main"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="BonusLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
+unique_name_in_owner = true
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 34
+text = "BONUS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Bonus"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margins/Control/InputsContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VSeparator" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ResultLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Roll"
+theme_override_font_sizes/font_size = 58
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VSeparator2" type="VSeparator" parent="Margins/Control/InputsContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Margins/Control/InputsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+
+[node name="ChanceLabel" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Chance"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="Margins/Control/InputsContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Chance"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WinLossContainer" type="HBoxContainer" parent="Margins/Control"]
 layout_mode = 1
@@ -154,23 +226,60 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="ExitButton" type="Button" parent="Margins/Control"]
+unique_name_in_owner = true
 layout_mode = 1
 offset_right = 8.0
 offset_bottom = 8.0
 text = "EXIT"
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Margins/Control"]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="MusicLabel" type="Label" parent="Margins/Control/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+horizontal_alignment = 1
+
+[node name="MusicSlider" type="HSlider" parent="Margins/Control/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
+[node name="SfxLabel" type="Label" parent="Margins/Control/VBoxContainer"]
+layout_mode = 2
+text = "SFX"
+horizontal_alignment = 1
+
+[node name="SfxSlider" type="HSlider" parent="Margins/Control/VBoxContainer"]
+layout_mode = 2
+max_value = 1.0
+step = 0.1
+value = 1.0
+
 [node name="Click" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("5_552s0")
+bus = &"Sfx"
 
 [node name="Roll" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("6_cu3qx")
+bus = &"Sfx"
 
+[connection signal="pressed" from="Margins/Control/InputsContainer/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main5Button" to="." method="_on_main_button_pressed" binds= [5]]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main6Button" to="." method="_on_main_button_pressed" binds= [6]]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main7Button" to="." method="_on_main_button_pressed" binds= [7]]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main8Button" to="." method="_on_main_button_pressed" binds= [8]]
 [connection signal="pressed" from="Margins/Control/InputsContainer/MainSelContainer/Main9Button" to="." method="_on_main_button_pressed" binds= [9]]
-[connection signal="pressed" from="Margins/Control/InputsContainer/RollButton" to="." method="_on_roll_button_pressed"]
 [connection signal="pressed" from="Margins/Control/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="value_changed" from="Margins/Control/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="Margins/Control/VBoxContainer/SfxSlider" to="." method="_on_sfx_slider_value_changed"]

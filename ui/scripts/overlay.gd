@@ -1,5 +1,7 @@
 class_name Overlay extends CanvasLayer
 
+@onready var SFX_INDEX: int = AudioServer.get_bus_index("Sfx")
+@onready var MUSIC_INDEX: int = AudioServer.get_bus_index("Music")
 const WIN_TEXTURE = preload("res://ui/win.tscn")
 const LOSS_TEXTURE = preload("res://ui/loss.tscn")
 
@@ -10,11 +12,13 @@ signal roll
 @onready var main_label: Label = %MainLabel
 @onready var win_loss_label: Label = %WinLossLabel
 @onready var chance_label: Label = %ChanceLabel
+@onready var bonus_label: Label = %BonusLabel
 @onready var result_label: Label = %ResultLabel
 @onready var main_sel_container: HBoxContainer = %MainSelContainer
 @onready var roll_button: Button = %RollButton
 @onready var losses_container: VBoxContainer = %LossesContainer
 @onready var wins_container: VBoxContainer = %WinsContainer
+@onready var exit_button: Button = %ExitButton
 # SFX
 @onready var click_sfx: AudioStreamPlayer = %Click
 @onready var roll_sfx: AudioStreamPlayer = %Roll
@@ -26,6 +30,8 @@ func _ready() -> void:
 	# Call me Israel the way I'm gonna kill all these children
 	for child in losses_container.get_children() + wins_container.get_children():
 		child.queue_free()
+	if OS.get_name() != "Windows":
+		exit_button.hide()
 
 
 # PUBLIC
@@ -39,6 +45,7 @@ func update_result(result: int, color: Color = Color.WHITE):
 func update_text(text: String, main: int = 0, chance: int = 0):
 	win_loss_label.text = text
 	main_label.text = str(main) if main > 0 else "-"
+	bonus_label.text = str(11) if main == 7 else (str(12) if main == 6 or main == 8 else "-")
 	chance_label.text = str(chance) if chance > 0 else "-"
 	main_label.self_modulate = Color.RED if chance > 0 else Color.GREEN
 
@@ -78,3 +85,10 @@ func _on_exit_button_pressed() -> void:
 	click_sfx.play()
 	await get_tree().create_timer(0.1).timeout
 	get_tree().quit()	# TODO scene manager
+
+
+func _on_sfx_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(SFX_INDEX, value)
+
+func _on_music_slider_value_changed(value: float) -> void:
+	AudioServer.set_bus_volume_linear(MUSIC_INDEX, value)
